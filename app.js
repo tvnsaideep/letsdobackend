@@ -6,13 +6,13 @@ const fs = require('fs');
 const app = express();
 const http = require('http');
 const appConfig = require('./config/appConfig');
-const logger = require('./app/libs/loggerLib');
-const routeLoggerMiddleware = require('./app/middlewares/routeLogger.js');
-const globalErrorMiddleware = require('./app/middlewares/appErrorHandler');
+const logger = require('./files/libs/loggerLib');
+const routeLoggerMiddleware = require('./files/middlewares/routeLogger.js');
+const globalErrorMiddleware = require('./files/middlewares/appErrorHandler');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 
-const libs = require('./app/libs/timeLib');
+const libs = require('./files/libs/timeLib');
 
 app.use(morgan('dev'));
 
@@ -27,11 +27,11 @@ app.use(express.static(path.join(__dirname, 'client')));
 
 
 
-const modelsPath = './app/models';
-const controllersPath = './app/controllers';
-const libsPath = './app/libs';
-const middlewaresPath = './app/middlewares';
-const routesPath = './app/routes';
+const modelsPath = './files/models';
+const controllersPath = './files/controllers';
+const libsPath = './files/libs';
+const middlewaresPath = './files/middlewares';
+const routesPath = './files/routes';
 
 app.all('*', function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -76,7 +76,7 @@ server.on('listening', onListening);
 
 
 // socket io connection handler 
-const socketLib = require("./app/libs/socketLib");
+const socketLib = require("./files/libs/socketLib");
 const socketServer = socketLib.setServer(server);
 
 
